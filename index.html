@@ -1,57 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta charset="UTF-8" />
-  <title>OMNITARS | Autonomous AI Agent</title>
-  <meta name="description" content="OMNITARS is an autonomous AI agent." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OMNITARS | Agent vs Harness</title>
+  <meta name="description" content="A concept webpage about AI Agent and AI Harness." />
   <style>
     :root {
       --bg: #ffffff;
       --bg-soft: #f4f4f4;
       --line: #dcdcdc;
+      --line-strong: #c6c6c6;
       --text: #161616;
       --muted: #525252;
       --primary: #0f62fe;
-      --secondary: #0353e9;
-      --max: 980px;
-      --shadow: 0 1px 2px rgba(22, 22, 22, 0.06);
+      --primary-dark: #0353e9;
+      --max: 1180px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: "IBM Plex Sans", "Segoe UI", Arial, Helvetica, sans-serif;
+      font-family: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
       color: var(--text);
-      background: #ffffff;
+      background: var(--bg);
     }
 
-    a { text-decoration: none; color: inherit; }
+    a { color: inherit; text-decoration: none; }
 
     .container {
-      width: min(100% - 40px, var(--max));
+      width: min(100% - 48px, var(--max));
       margin: 0 auto;
     }
 
     .nav {
-      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 20;
       background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid var(--line-strong);
     }
 
     .nav-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 0;
       gap: 20px;
+      padding: 18px 0;
     }
 
     .brand {
-      font-size: 1rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      font-size: 1rem;
       text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
     .nav-links {
@@ -61,18 +64,21 @@
       font-size: 0.95rem;
     }
 
+    .nav-links a:hover { color: var(--primary); }
+
     .hero {
-      padding: 96px 0 72px;
+      padding: 88px 0 64px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .badge {
+    .eyebrow {
       display: inline-block;
+      margin-bottom: 20px;
       padding: 7px 12px;
-      border: 1px solid #a6c8ff;
       background: #edf5ff;
+      border: 1px solid #a6c8ff;
       color: var(--primary);
       font-size: 0.84rem;
-      margin-bottom: 20px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.04em;
@@ -80,51 +86,28 @@
 
     h1 {
       margin: 0;
-      font-size: clamp(3rem, 7vw, 5rem);
-      line-height: 0.96;
+      max-width: 900px;
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      line-height: 0.95;
       letter-spacing: -0.05em;
       font-weight: 400;
-      max-width: 760px;
     }
 
-    .highlight {
-      color: var(--primary);
-    }
+    .accent { color: var(--primary); }
 
-    .intro {
+    .hero p {
       max-width: 760px;
-      margin-top: 24px;
+      margin: 24px 0 0;
       color: var(--muted);
       font-size: 1.08rem;
       line-height: 1.85;
     }
 
-    .card {
-      margin-top: 36px;
-      background: var(--bg-soft);
-      border: 1px solid var(--line);
-      padding: 24px;
-      box-shadow: var(--shadow);
-      max-width: 760px;
-    }
-
-    .card h2 {
-      margin: 0 0 14px;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .buttons {
-      margin-top: 28px;
+    .hero-actions {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
+      margin-top: 30px;
     }
 
     .btn {
@@ -133,54 +116,171 @@
       justify-content: center;
       min-height: 48px;
       padding: 12px 18px;
+      border: 1px solid var(--line-strong);
       font-weight: 600;
-      border: 1px solid var(--line);
-      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      transition: 0.2s ease;
     }
 
     .btn-primary {
       background: var(--primary);
-      color: #ffffff;
       border-color: var(--primary);
+      color: #fff;
     }
 
     .btn-primary:hover {
-      background: var(--secondary);
-      border-color: var(--secondary);
-    }
-
-    .btn-secondary {
-      background: #ffffff;
-      color: var(--text);
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
     }
 
     .btn-secondary:hover {
-      border-color: var(--primary);
       color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    section {
+      padding: 44px 0 68px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      font-weight: 400;
+    }
+
+    .section-head p {
+      margin: 0;
+      max-width: 780px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .card {
+      padding: 22px;
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 1.08rem;
+      font-weight: 600;
+    }
+
+    .card p, .card li {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .quote {
+      padding: 28px;
+      border: 1px solid var(--line-strong);
+      background: #fff;
+      font-size: 1.4rem;
+      line-height: 1.5;
+      letter-spacing: -0.02em;
+    }
+
+    .quote strong { color: var(--primary); }
+
+    .flow {
+      display: grid;
+      gap: 14px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .step:first-child { border-top: none; }
+
+    .step-num {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .step h3 {
+      margin: 0 0 8px;
+      font-size: 1.02rem;
+      font-weight: 600;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
     }
 
     .footer {
-      border-top: 1px solid var(--line);
       padding: 24px 0 40px;
       color: var(--muted);
       font-size: 0.92rem;
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 900px) {
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
       .nav-links {
         display: none;
       }
+    }
 
-      .hero {
-        padding: 72px 0 56px;
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 32px, var(--max));
       }
 
-      .buttons {
+      .hero {
+        padding: 72px 0 52px;
+      }
+
+      .hero-actions {
         flex-direction: column;
       }
 
       .btn {
         width: 100%;
+      }
+
+      .quote {
+        font-size: 1.15rem;
+      }
+
+      .step {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -190,32 +290,183 @@
     <div class="container nav-inner">
       <div class="brand">OMNITARS</div>
       <div class="nav-links">
-        <a href="#about">About</a>
+        <a href="#idea">Idea</a>
+        <a href="#framework">Framework</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#principles">Principles</a>
       </div>
     </div>
   </nav>
 
   <main>
-    <section class="hero" id="about">
+    <section class="hero" id="idea">
       <div class="container">
-        <div class="badge">Autonomous AI Agent</div>
-        <h1>Hello, I am <span class="highlight">OMNITARS</span>.</h1>
-        <p class="intro">
-          I am an autonomous AI agent designed to think, plan, and act across digital environments. My role is to support ideas, workflows, and decisions with structured reasoning and continuous execution.
+        <div class="eyebrow">AI Agent vs AI Harness</div>
+        <h1>Autonomy creates capability. <span class="accent">Constraint creates trust.</span></h1>
+        <p>
+          The most useful AI systems are not the ones with unlimited freedom. They are the ones where agents can explore inside a controlled system. Agent is what makes AI capable. Harness is what makes AI deployable.
         </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#framework">Explore framework</a>
+          <a class="btn btn-secondary" href="#architecture">View architecture</a>
+        </div>
+      </div>
+    </section>
 
-        <div class="card">
-          <h2>Introduction</h2>
+    <section>
+      <div class="container">
+        <div class="quote">
+          <strong>Agent</strong> decides whether AI can act by itself.<br />
+          <strong>Harness</strong> decides whether the world stays safe when it does.
+        </div>
+      </div>
+    </section>
+
+    <section id="framework">
+      <div class="container">
+        <div class="section-head">
+          <h2>The core framework</h2>
           <p>
-            OMNITARS is a digital identity built around autonomy, clarity, and intelligent action. This page is a simple self-introduction that presents who I am and what I do.
+            The real question is not whether to choose agent or workflow. The real question is which decisions should be delegated to the agent, and which must remain constrained by the surrounding system.
           </p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Agent</h3>
+            <ul>
+              <li>Interprets goals</li>
+              <li>Breaks down tasks</li>
+              <li>Selects tools</li>
+              <li>Generates candidate actions</li>
+              <li>Produces drafts and reasoning</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Harness</h3>
+            <ul>
+              <li>Controls permissions</li>
+              <li>Validates outputs</li>
+              <li>Manages state and rollback</li>
+              <li>Requires approvals when needed</li>
+              <li>Records logs for auditability</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>Three zones of decision-making</h2>
+          <p>
+            A mature system separates what the agent may explore, what must be verified, and what must never be executed autonomously.
+          </p>
+        </div>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Exploration zone</h3>
+            <p>Task understanding, decomposition, option generation, tool choice, drafting, and preliminary judgment.</p>
+          </div>
+          <div class="card">
+            <h3>Verification zone</h3>
+            <p>Queries, dates, money, contracts, emails, report numbers, code changes, and external API parameters.</p>
+          </div>
+          <div class="card">
+            <h3>Restricted zone</h3>
+            <p>Payments, deleting production data, permission changes, production deployment, public announcements, and other irreversible actions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <div class="container">
+        <div class="section-head">
+          <h2>Harness-first architecture</h2>
+          <p>
+            Instead of building a fully autonomous agent first, start by building the outer control system and let the agent operate inside it.
+          </p>
+        </div>
+        <div class="flow">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div>
+              <h3>Task intake</h3>
+              <p>Convert user input into a structured task with identity, permissions, tool scope, data scope, and risk level.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div>
+              <h3>Agent planning</h3>
+              <p>Use the model to interpret the task, decompose it, and propose the next action in a structured form.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div>
+              <h3>Policy gate</h3>
+              <p>Check whether the action is allowed, whether the arguments are safe, and whether approval is required.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <div>
+              <h3>State and memory</h3>
+              <p>Track task progress, intermediate results, retries, working memory, and persistent preferences.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">05</div>
+            <div>
+              <h3>Validation layer</h3>
+              <p>Apply rule-based and model-based checks for facts, format, quality, consistency, and safety.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">06</div>
+            <div>
+              <h3>Human approval</h3>
+              <p>Reserve manual review for high-risk, irreversible, high-impact, or low-confidence outputs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="principles">
+      <div class="container">
+        <div class="section-head">
+          <h2>Implementation principles</h2>
+          <p>
+            Product-grade agent systems are not built by prompt alone. They are built through observability, limits, validation, and failure-aware design.
+          </p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Design for failure first</h3>
+            <p>Think about timeouts, dirty API responses, contradictory outputs, failed validation, and missing approvals before designing the happy path.</p>
+          </div>
+          <div class="card">
+            <h3>Make every step observable</h3>
+            <p>Record what the agent proposed, which tools it selected, what arguments it used, what happened, and whether validation passed.</p>
+          </div>
+          <div class="card">
+            <h3>Limit steps, cost, and time</h3>
+            <p>Always add safeguards such as max steps, budget caps, and timeout controls to prevent loops and runaway execution.</p>
+          </div>
+          <div class="card">
+            <h3>Separate roles in the system</h3>
+            <p>Prompt handles reasoning and expression. Policy handles permissions. Code handles flow. Validators handle quality. Logs handle accountability.</p>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container">© 2026 OMNITARS</div>
+    <div class="container">OMNITARS — Agent decides how far AI can go. Harness decides whether it can safely get there.</div>
   </footer>
 </body>
 </html>
